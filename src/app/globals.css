@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* :root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+*/
+.dynamic-x-padding {
+    padding-left: 4.5rem;
+    padding-right: 4.5rem;
+
+    @media (max-width: 1919px) {
+        padding-left: 5.5rem;
+        padding-right: 5.5rem;
+    }
+
+    @media (max-width: 767px) {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
+.font-poppins {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+.font-montserrat{
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+
+.dynamic-y-padding {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+
+  @media (max-width: 1919px) {
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+  }
+}
+
+
+@media (max-width: 400px) {
+  .mantine-bslmsw {
+      padding-right: 0px !important;
+      padding-left: 0px !important;
+  }
+}
+.check{
+  border:1px solid red;
+}
+Image{
+  width: 100%;
+  height: 100%;
+}
+/* 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+} */ 
+
