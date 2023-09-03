@@ -4,7 +4,8 @@ import Logo from '../common/Logo'
 import { useRouter,usePathname } from 'next/navigation'
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import { ActionIcon, TextInput } from '@mantine/core';
+import { ActionIcon, Switch, TextInput } from '@mantine/core';
+
 
 
 const HeaderPage = () => {
@@ -29,7 +30,11 @@ const HeaderPage = () => {
 // }, [])
 
 
+const [theme, setTheme] = useState<boolean>(true);
 
+function setThemeProvider() {
+  setTheme(pre => !pre)
+}
 
   const navbar=[
     {id:1,name:"Home" , link:"/home"},
@@ -61,6 +66,7 @@ const HeaderPage = () => {
           <div className='w-5 h-5 bg-red-700 rounded-full flex items-center justify-center relative -top-2'>
           <span className='text-[12px] text-white font-bold'>1</span>
           </div>
+        
         </div>
       </section>
       <section className=''>
