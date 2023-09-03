@@ -11,20 +11,20 @@ import { useRouter } from 'next/navigation';
 import axios from "axios"
 
 
-interface pageProps{
-  params:{id:string}
+interface pageProps {
+  params: { id: string }
 }
 
-const ProductDetails:FC<pageProps> = ({params}) => {
-const router=useRouter();
+const ProductDetails: FC<pageProps> = ({ params }) => {
+  const router = useRouter();
   const [count, setCount] = useState<number>(1);
 
-console.log(params.id)
+  console.log(params.id)
 
-  const {data,isLoading}=useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['productDetail'],
     queryFn: () => axios.get(`https://fakestoreapi.com/products/${params.id}`).then((res: any) => res.data),
-  
+
   })
 
   const addStock = () => {
@@ -63,7 +63,7 @@ console.log(params.id)
                   <StarIcon fontSize='small' className='text-yellow-500' />
                 </span>
                 <span className='text-sm font-normal font-montserrat'>
-                 {data?.rating?.rate}
+                  {data?.rating?.rate}
                 </span>
               </div>
             </div>
@@ -101,7 +101,7 @@ console.log(params.id)
                   only <span className='text-red-500'>12</span> items left
                 </p>
                 <p className='text-sm font-poppins'>
-                  Don't miss it
+                  Don&apos;t miss it
                 </p>
               </article>
             </div>
@@ -149,7 +149,7 @@ console.log(params.id)
       <section className='bottom py-8'>
         <h1 className='text-xl font-poppins '>Full Specification</h1>
         <div className='w-[50%] pt-4 font-poppins text-sm'>
-          
+
           {
             data?.description
           }
