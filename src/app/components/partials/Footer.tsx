@@ -31,10 +31,10 @@ const FooterPage = () => {
 
 
     return (
-        <footer className='flex flex-col '>
+        <footer className='flex flex-col  '>
 
-            <article className='grid grid-cols-12'>
-                <section className='col-span-4 '>
+            <article className='grid grid-cols-12 py-5  '>
+                <section className='col-span-4  flex items-center  flex-col'>
                     <div className='text-lg font-semibold'>
                         Customer Service
                     </div>
@@ -47,7 +47,7 @@ const FooterPage = () => {
                         </ul>
                     </div>
                 </section>
-                <section className='col-span-4 '>
+                <section className='col-span-4 flex items-center  flex-col'>
                     <div className='text-lg font-semibold'>
                         My Account
                     </div>
@@ -60,7 +60,7 @@ const FooterPage = () => {
                         </ul>
                     </div>
                 </section>
-                <section className='col-span-4 '>
+                <section className='col-span-4  flex items-center  flex-col'>
                     <div className='text-lg font-semibold'>
                         Support
                     </div>

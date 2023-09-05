@@ -8,7 +8,10 @@ import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined
 import { Button, Divider, TextInput } from '@mantine/core';
 import { useQuery } from "@tanstack/react-query"
 import { useRouter } from 'next/navigation';
-import axios from "axios"
+import { useDispatch, useSelector } from "react-redux"
+import { APIProductDetails } from '@/app/apis/products/route';
+import { add } from '@/app/store/cartSlice';
+
 
 
 interface pageProps {
@@ -18,14 +21,45 @@ interface pageProps {
 const ProductDetails: FC<pageProps> = ({ params }) => {
   const router = useRouter();
   const [count, setCount] = useState<number>(1);
+  const dispatch = useDispatch();
+  const item = useSelector((state: any) => state.cart);
 
-  console.log(params.id)
+  const getAllProductDetails = async () => {
+    try {
+      const res = await APIProductDetails(params.id)
+      return res
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   const { data, isLoading } = useQuery({
     queryKey: ['productDetail'],
-    queryFn: () => axios.get(`https://fakestoreapi.com/products/${params.id}`).then((res: any) => res.data),
+    queryFn: () => getAllProductDetails()
 
   })
+
+
+  const handleCartButton = ({ id, price, image, quantity, title }: { id: number, price: number, image: string, title: string, quantity: number }) => {
+    dispatch(add({
+      id, image, quantity:count, price,title
+    }))
+  }
+
+  // const handleDecreaseButton = ({ id, price, quantity, image, title }: { id: number, price: number, quantity: number, image: string, title: string }) => {
+  //   dispatch(decreaseQuantity(
+  //     {
+  //       id, image, title, price, quantity
+  //     }
+  //   ))
+  // }
+  // const handleRemoveButton = ({ id, price, quantity, image, title }: { id: number, price: number, quantity: number, image: string, title: string }) => {
+  //   dispatch(remove(
+  //     {
+  //       id, image, title, price, quantity
+  //     }
+  //   ))
+  // }
 
   const addStock = () => {
     setCount((prev) => prev + 1);
@@ -109,7 +143,7 @@ const ProductDetails: FC<pageProps> = ({ params }) => {
               <Button radius="xl" size="lg" className='bg-gray-700'>
                 <span className='text-base  font-montserrat'>Buy now</span>
               </Button>
-              <Button radius="xl" size="lg" variant='subtle' className='border-2 border-[#d8d8d8]'>
+              <Button onClick={()=>handleCartButton(data)} radius="xl" size="lg" variant='subtle' className='border-2 border-[#d8d8d8]'>
                 <span className='text-gray-600 font-montserrat text-base '> Add to Cart</span>
               </Button>
 

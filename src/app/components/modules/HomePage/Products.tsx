@@ -8,18 +8,39 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Image from 'next/image';
 import { useQuery } from "@tanstack/react-query"
 import axios from 'axios';
+import Loading from './Loading';
+import { useDispatch } from 'react-redux';
+import { add } from '@/app/store/cartSlice';
+
+
 
 const Products = () => {
+    const dispatch = useDispatch();
+
+
     const router = useRouter();
-
-
     const { data, isLoading } = useQuery({
         queryKey: ['products'],
         queryFn: () => axios.get('https://fakestoreapi.com/products?limit=5').then((res: any) => res.data),
-       
+
     })
 
-    if (isLoading) return <>Loading.....</>
+
+    const handleAddProducts = ({ id, title, image, price }: { id: number, title: string, image: string, price: number }) => {
+        dispatch(add(
+            {
+                id,
+                title,
+                price,
+                image,
+                quantity: 1
+            }
+        ));
+    }
+
+
+
+    if (isLoading) return <Loading />
 
     return (
         <main>
@@ -31,21 +52,21 @@ const Products = () => {
             <section className='flex gap-8 flex-wrap'>
                 {
                     data?.map((datas: any) => (
-                        <article key={datas.id} className='card w-[16rem] pt-4 cursor-pointer ' onClick={() => router.push(`products/${datas.id}`)}>
-                            <div className='bg-gray-400 p-4  rounded-t-lg '>
-                                <div className='relative h-8 w-8 rounded-full bg-white top-2 left-2 flex items-center justify-center'>
+                        <article key={datas.id} className='card w-[16rem]    shadow-md rounded-b-lg ' >
+                            <div className=' px-2  hover:scale-105 duration-150 ease-out   '>
+                                <div className='relative h-8 w-8  rounded-full bg-white top-2 left-2 flex items-center justify-center'>
                                     <span className='flex text-center items-center'>
                                         <FavoriteBorderIcon fontSize='small' />
                                     </span>
                                 </div>
 
-                                <div className='w-full  h-full'>
-                                    <Image src={datas?.image} width={100} height={100} alt='Product image' quality={100} className='w-80 h-80' />
+                                <div onClick={() => router.push(`products/${datas.id}`)} className='cursor-pointer w-[200px] h-[150px]  flex items-center justify-center'>
+                                    <Image src={datas?.image} width={150} height={150} alt='Product image' quality={100} className='w-[180px] h-[180px] rounded-lg p-4  ' />
                                 </div>
                             </div>
-                            <div className='p-2'>
-                                <div className='text-base h-20  font-semibold font-montserrat'>
-                                    {datas.title}
+                            <div className='px-4 pb-4 '>
+                                <div className='text-base h-16  font-semibold font-montserrat'>
+                                    {datas.title.substring(0,26)}...
                                 </div>
                                 <div className='flex items-center gap-2 '>
                                     <span className='flex items-center'>
@@ -61,7 +82,7 @@ const Products = () => {
 
                                         {datas.price}
                                     </span>
-                                    <span className='cursor-pointer'>
+                                    <span className='cursor-pointer hover:scale-105 duration-200 ease-in-out ' onClick={() => handleAddProducts(datas)}>
                                         <AddCircleIcon />
                                     </span>
 

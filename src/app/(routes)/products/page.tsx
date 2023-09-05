@@ -4,24 +4,39 @@ import React from 'react'
 import { useQuery } from "@tanstack/react-query"
 import { useRouter } from 'next/navigation';
 import axios from "axios"
-import productCard from '../../components/modules/ProductPage/productCard';
+import ProductCard from '../../components/modules/ProductPage/ProductCard';
+import { APIGetAllProducts } from '@/app/apis/products/route';
+import Loading from '@/app/components/modules/ProductPage/ProductsLoading';
 const ProductsPage = () => {
 
   const router = useRouter();
 
+
+const getAllProducts=async()=>{
+  try {
+    const res=await APIGetAllProducts();
+    return res;
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+
+
   const { data, isLoading } = useQuery({
     queryKey: ['allproducts'],
-    queryFn: () => axios.get(`https://fakestoreapi.com/products`).then((res: any) => res.data),
+    queryFn: () => getAllProducts(),
 
   })
+
+  if(isLoading) return <Loading  />
 
   return (
     <main className='dynamic-x-padding dynamic-y-padding'>
       <section>
-        {/* <productCard /> */}
+        <ProductCard cards={data}/>
       </section>
-      <section></section>
-      <section></section>
+      
     </main>
   )
 }

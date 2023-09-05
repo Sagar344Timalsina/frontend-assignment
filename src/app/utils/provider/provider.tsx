@@ -5,12 +5,13 @@ import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import { themeContext } from '../../components/context/themeContext';
-import HeaderPage from "@/app/components/partials/Header";
-import FooterPage from "@/app/components/partials/Footer";
+import store from "../../store/store"
+import  {Provider}  from "react-redux";
+
 
 
 function Providers({ children }: React.PropsWithChildren) {
-    const [theme, setTheme] = useState<boolean>(true);
+    const [theme, setTheme] = useState<boolean>(false);
     function setThemeProvider() {
          setTheme(pre => !pre)
      }
@@ -21,12 +22,15 @@ function Providers({ children }: React.PropsWithChildren) {
                 queries: {
                     refetchOnWindowFocus: false,
                     refetchOnReconnect: true
+                   
                 }
             }
         }
     );
 
     return (
+        <Provider store={store}>
+            
         <themeContext.Provider value={theme}>
 
             <QueryClientProvider client={client}>
@@ -34,6 +38,7 @@ function Providers({ children }: React.PropsWithChildren) {
                 <ReactQueryDevtools />
             </QueryClientProvider>
         </themeContext.Provider>
+        </Provider>
     );
 }
 
