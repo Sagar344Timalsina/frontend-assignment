@@ -5,14 +5,8 @@ import { useRouter } from "next/navigation";
 import React from "react";
 import { useDispatch } from "react-redux";
 
-
-
-const imageLoader = ({ src, width, quality }: any) => {
-  return `https://fakestoreapi.com/${src}?w=${width}&q=${quality || 75}`
-}
-
-const ProductCard = ({ cards }: any) => {
-  const router = useRouter();
+const CardProduct = ({ cards }: any) => {
+     const router = useRouter();
   const dispatch = useDispatch();
 
   const handleAddProducts = ({ id, title, image, price }: { id: number, title: string, image: string, price: number }) => {
@@ -27,8 +21,6 @@ const ProductCard = ({ cards }: any) => {
     ));
     
   }
-
-  console.log(cards)
 
   return (
     <main className="flex gap-8 flex-wrap">
@@ -62,6 +54,6 @@ const ProductCard = ({ cards }: any) => {
       }
     </main>
   );
-};
+}
 
-export default ProductCard;
+export default CardProduct

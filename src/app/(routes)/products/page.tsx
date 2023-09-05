@@ -4,7 +4,7 @@ import React from 'react'
 import { useQuery } from "@tanstack/react-query"
 import { useRouter } from 'next/navigation';
 import axios from "axios"
-import ProductCard from '@/app/components/modules/ProductPage/ProductCard';
+import ProductCard from '@/app/components/modules/ProductPage/CardProduct';
 import { APIGetAllProducts } from '@/app/apis/products/route';
 import Loading from '@/app/components/modules/ProductPage/ProductsLoading';
 const ProductsPage = () => {
