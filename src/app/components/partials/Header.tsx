@@ -6,10 +6,11 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import { ActionIcon, Switch, TextInput } from '@mantine/core';
 import { useSelector } from 'react-redux';
+import Link from 'next/link';
 
 
 const HeaderPage = () => {
-  const {productData} = useSelector((state: any) => state.cart)
+  const { productData } = useSelector((state: any) => state.cart)
   const router = useRouter();
   const path = usePathname();
 
@@ -47,10 +48,10 @@ const HeaderPage = () => {
   return (
     <nav className=''>
       <section className='flex  items-center justify-around'>
-        <div className='flex items-center  cursor-pointer ' onClick={() => router.push("/")}>
+        <Link href={'/home'} className='flex items-center  cursor-pointer ' >
           <Logo />
           <span className='text-2xl font-bold text'>Online <span className='text-red-600'>Store</span></span>
-        </div>
+        </Link>
         <div className=''>
           <TextInput
             rightSection={<SearchOutlinedIcon fontSize='small' />}
@@ -65,7 +66,7 @@ const HeaderPage = () => {
         <div className='flex' onClick={() => router.push('/cart')}>
           <ShoppingCartOutlinedIcon fontSize='large' />
           <div className='w-5 h-5 bg-red-700 rounded-full flex items-center justify-center relative -top-2'>
-            <span className='text-[12px] text-white font-bold'>{productData.length>0?productData.length:0 }</span>
+            <span className='text-[12px] text-white font-bold'>{productData.length > 0 ? productData.length : 0}</span>
           </div>
 
         </div>
@@ -73,11 +74,14 @@ const HeaderPage = () => {
       <section className=''>
         <ul className='flex gap-8 h-12 px-16 bg-gray-700 justify-end items-center'>
           {
-            navbar?.map((nav) => (
-              <li key={nav.id} className={`cursor-pointer  text-lg font-semibold hover:scale-110 duration-200 ease-in ${activeLink === nav?.name ? 'text-red-500' : 'text-white'}`} onClick={() => router.push(nav.link)}>
-                {
-                  nav.name
-                }
+            navbar?.map((nav: any) => (
+              <li key={nav.id} className={`cursor-pointer  text-lg font-semibold hover:scale-110 duration-200 ease-in ${activeLink === nav?.name ? 'text-red-500' : 'text-white'}`} >
+                <Link href={nav.link}>
+
+                  {
+                    nav.name
+                  }
+                </Link>
               </li>
             ))
           }
