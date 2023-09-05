@@ -7,6 +7,7 @@ const nextConfig = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
+  future: { webpack5: true },
     images: {
         domains: ['fakestoreapi.com', 'anotherwebsite.com'],
       },
