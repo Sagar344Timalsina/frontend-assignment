@@ -4,10 +4,10 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
-  output: 'export',
+ 
   
     images: {
-      unoptimized:true,
+     
         domains: ['fakestoreapi.com', 'anotherwebsite.com'],
       },
 }
