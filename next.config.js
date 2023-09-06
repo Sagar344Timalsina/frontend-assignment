@@ -7,8 +7,13 @@ const nextConfig = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
+  experimental: {
+    appDir: true,
+  },
+  output: 'export',
   
     images: {
+      unoptimized:true,
         domains: ['fakestoreapi.com', 'anotherwebsite.com'],
       },
 }
