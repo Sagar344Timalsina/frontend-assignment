@@ -93,12 +93,14 @@ const HeaderPage = () => {
         <ul className='flex gap-8 h-12 px-16 bg-gray-700 justify-end items-center'>
           {
             navbar?.map((nav: any) => (
-              <li key={nav.id} onClick={() => router.push(nav.link)} className={`cursor-pointer  text-lg font-semibold hover:scale-110 duration-200 ease-in ${activeLink === nav?.name ? 'text-red-500' : 'text-white'}`} >
+              <li key={nav.id} className={`cursor-pointer  text-lg font-semibold hover:scale-110 duration-200 ease-in ${activeLink === nav?.name ? 'text-red-500' : 'text-white'}`} >
+                <Link href={nav.link}>
+                  {
+                    nav.name
+                  }
 
+                </Link>
 
-                {
-                  nav.name
-                }
 
               </li>
             ))
