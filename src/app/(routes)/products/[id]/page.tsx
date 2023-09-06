@@ -9,7 +9,7 @@ import { Button, Divider, TextInput } from '@mantine/core';
 import { useQuery } from "@tanstack/react-query"
 import { useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from "react-redux"
-import { APIProductDetails } from '@/app/apis/products/route';
+import { APIProductDetails } from '@/app/apis/products/index';
 import { add } from '@/app/store/cartSlice';
 
 

@@ -8,6 +8,14 @@
   --background-end-rgb: 255, 255, 255;
 }
 */
+.dark{
+  background-color: gray;
+  color: azure;
+}
+.light{
+  color:gray;
+  background-color: azure;
+}
 .dynamic-x-padding {
     padding-left: 4.5rem;
     padding-right: 4.5rem;

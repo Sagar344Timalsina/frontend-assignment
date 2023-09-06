@@ -5,16 +5,19 @@ import { useRouter, usePathname } from 'next/navigation'
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import { ActionIcon, Switch, TextInput } from '@mantine/core';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Link from 'next/link';
+import { changeTheme } from '@/app/store/themeSlice';
 
 
 const HeaderPage = () => {
   const { productData } = useSelector((state: any) => state.cart)
   const router = useRouter();
   const path = usePathname();
+  const dispatch = useDispatch();
 
   const [activeLink, setActiveLink] = useState<String>('');
+  const [theme, setTheme] = useState<'dark' | 'light'>('light');
 
 
   // const getPathName=()=>{
@@ -32,23 +35,34 @@ const HeaderPage = () => {
   // }, [])
 
 
-  const [theme, setTheme] = useState<boolean>(true);
 
-  function setThemeProvider() {
-    setTheme(pre => !pre)
+  // function setThemeProvider() {
+  //   setTheme(pre => !pre)
+  // }
+  console.log(theme)
+
+
+  const handleThemeChange = () => {
+    dispatch(changeTheme(theme))
   }
 
+
+  useEffect(() => {
+   handleThemeChange()
+  }, [theme])
+  
+
   const navbar = [
-    { id: 1, name: "Home", link: "/home" },
-    { id: 2, name: "Products", link: "/products" },
-    { id: 3, name: "About us", link: "/about-us" },
-    { id: 4, name: "Contact us", link: "/contact-us" },
+    { id: 1, name: "Home", link: '/home' },
+    { id: 2, name: "Products", link: '/products' },
+    { id: 3, name: "About us", link: '/about-us' },
+    { id: 4, name: "Contact us", link: '/contact-us' },
   ]
   // const currentLink
   return (
-    <nav className=''>
+    <header className=''>
       <section className='flex  items-center justify-around'>
-        <Link href={'/home'} className='flex items-center  cursor-pointer ' >
+        <Link href='/home' className='flex items-center  cursor-pointer ' >
           <Logo />
           <span className='text-2xl font-bold text'>Online <span className='text-red-600'>Store</span></span>
         </Link>
@@ -63,19 +77,25 @@ const HeaderPage = () => {
           />
 
         </div>
-        <div className='flex' onClick={() => router.push('/cart')}>
-          <ShoppingCartOutlinedIcon fontSize='large' />
-          <div className='w-5 h-5 bg-red-700 rounded-full flex items-center justify-center relative -top-2'>
-            <span className='text-[12px] text-white font-bold'>{productData.length > 0 ? productData.length : 0}</span>
-          </div>
-
+        <div>
+          <Switch onChange={() => setTheme(theme === 'light' ? 'dark' : 'light')} />
         </div>
+        <Link href='/cart'>
+
+          <div className='flex check' >
+            <ShoppingCartOutlinedIcon fontSize='large' />
+            <div className='w-5 h-5 bg-red-700 rounded-full flex items-center justify-center relative -top-2'>
+              <span className='text-[12px] text-white font-bold'>{productData.length > 0 ? productData.length : 0}</span>
+            </div>
+
+          </div>
+        </Link>
       </section>
-      <section className=''>
+      <nav className=''>
         <ul className='flex gap-8 h-12 px-16 bg-gray-700 justify-end items-center'>
           {
             navbar?.map((nav: any) => (
-              <li key={nav.id} className={`cursor-pointer  text-lg font-semibold hover:scale-110 duration-200 ease-in ${activeLink === nav?.name ? 'text-red-500' : 'text-white'}`} >
+              <li  key={nav.id} className={`cursor-pointer  text-lg font-semibold hover:scale-110 duration-200 ease-in ${activeLink === nav?.name ? 'text-red-500' : 'text-white'}`} >
                 <Link href={nav.link}>
 
                   {
@@ -86,9 +106,9 @@ const HeaderPage = () => {
             ))
           }
         </ul>
-      </section>
+      </nav>
 
-    </nav>
+    </header>
   )
 }
 

@@ -2,10 +2,10 @@ import React from 'react'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import CategoriesLoading from '../Categories/CategoriesLoading'
-import { APIGetCategories } from '@/app/apis/categories/route'
+import { APIGetCategories } from '@/app/apis/categories'
 
 const Categories = () => {
- 
+
 
 
     const getCategories = async () => {
@@ -23,7 +23,7 @@ const Categories = () => {
     const { data, isLoading } = useQuery({
         queryKey: ["Categories"],
         queryFn: () => getCategories()
-        
+
     })
     console.log(data);
     if (isLoading) return <CategoriesLoading />
