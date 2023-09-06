@@ -27,7 +27,6 @@ const HeaderPage = () => {
   // }
 
 
-  // console.log(activeLink)
 
   // useEffect(() => {
   //   getPathName();
@@ -39,7 +38,6 @@ const HeaderPage = () => {
   // function setThemeProvider() {
   //   setTheme(pre => !pre)
   // }
-  console.log(theme)
 
 
   const handleThemeChange = () => {
@@ -48,24 +46,24 @@ const HeaderPage = () => {
 
 
   useEffect(() => {
-   handleThemeChange()
+    handleThemeChange()
   }, [theme])
-  
+
 
   const navbar = [
-    { id: 1, name: "Home", link: '/home' },
-    { id: 2, name: "Products", link: '/products' },
-    { id: 3, name: "About us", link: '/about-us' },
-    { id: 4, name: "Contact us", link: '/contact-us' },
+    { id: 1, name: "Home", link: `/home` },
+    { id: 2, name: "Products", link: `/products` },
+    { id: 3, name: "About us", link: `/about-us` },
+    { id: 4, name: "Contact us", link: `/contact-us` },
   ]
   // const currentLink
   return (
     <header className=''>
-      <section className='flex  items-center justify-around'>
-        <Link href='/home' className='flex items-center  cursor-pointer ' >
+      <section className='flex  items-center justify-around ' >
+        <div className='flex items-center  cursor-pointer ' onClick={() => router.push(`/home`)} >
           <Logo />
           <span className='text-2xl font-bold text'>Online <span className='text-red-600'>Store</span></span>
-        </Link>
+        </div>
         <div className=''>
           <TextInput
             rightSection={<SearchOutlinedIcon fontSize='small' />}
@@ -77,31 +75,31 @@ const HeaderPage = () => {
           />
 
         </div>
-        <div>
+        {/* <div>
           <Switch onChange={() => setTheme(theme === 'light' ? 'dark' : 'light')} />
-        </div>
-        <Link href='/cart'>
+        </div> */}
 
-          <div className='flex check' >
-            <ShoppingCartOutlinedIcon fontSize='large' />
-            <div className='w-5 h-5 bg-red-700 rounded-full flex items-center justify-center relative -top-2'>
-              <span className='text-[12px] text-white font-bold'>{productData.length > 0 ? productData.length : 0}</span>
-            </div>
 
+        <div className='flex cursor-pointer' onClick={() => router.push(`/cart`)}>
+          <ShoppingCartOutlinedIcon fontSize='large' />
+          <div className='w-5 h-5 bg-red-700 rounded-full flex items-center justify-center relative -top-2'>
+            <span className='text-[12px] text-white font-bold'>{productData.length > 0 ? productData.length : 0}</span>
           </div>
-        </Link>
+
+        </div>
+
       </section>
       <nav className=''>
         <ul className='flex gap-8 h-12 px-16 bg-gray-700 justify-end items-center'>
           {
             navbar?.map((nav: any) => (
-              <li  key={nav.id} className={`cursor-pointer  text-lg font-semibold hover:scale-110 duration-200 ease-in ${activeLink === nav?.name ? 'text-red-500' : 'text-white'}`} >
-                <Link href={nav.link}>
+              <li key={nav.id} onClick={() => router.push(nav.link)} className={`cursor-pointer  text-lg font-semibold hover:scale-110 duration-200 ease-in ${activeLink === nav?.name ? 'text-red-500' : 'text-white'}`} >
 
-                  {
-                    nav.name
-                  }
-                </Link>
+
+                {
+                  nav.name
+                }
+
               </li>
             ))
           }

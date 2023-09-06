@@ -12,10 +12,8 @@ const Categories = () => {
         try {
             const res = await APIGetCategories();
             // return res;
-            console.log(res);
             return res;
         } catch (error) {
-            console.log(error)
         }
     }
 
@@ -25,7 +23,6 @@ const Categories = () => {
         queryFn: () => getCategories()
 
     })
-    console.log(data);
     if (isLoading) return <CategoriesLoading />
 
 

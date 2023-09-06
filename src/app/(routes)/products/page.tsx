@@ -17,7 +17,7 @@ const ProductsPage = () => {
       const res = await APIGetAllProducts();
       return res;
     } catch (error) {
-      console.log(error)
+    
     }
   }
 
