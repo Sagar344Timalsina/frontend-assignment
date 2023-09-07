@@ -8,6 +8,7 @@ import { ActionIcon, Switch, TextInput } from '@mantine/core';
 import { useSelector, useDispatch } from 'react-redux';
 import Link from 'next/link';
 import { changeTheme } from '@/app/store/themeSlice';
+import SearchBar from '../modules/Header/SearchBar';
 
 
 const HeaderPage = () => {
@@ -65,14 +66,7 @@ const HeaderPage = () => {
           <span className='text-2xl font-bold text'>Online <span className='text-red-600'>Store</span></span>
         </div>
         <div className=''>
-          <TextInput
-            rightSection={<SearchOutlinedIcon fontSize='small' />}
-            rightSectionWidth={30}
-            styles={{ rightSection: { pointerEvents: 'none' } }}
-            placeholder="Search .........."
-            size='lg'
-            radius="md"
-          />
+          <SearchBar/>
 
         </div>
         {/* <div>
@@ -89,7 +83,7 @@ const HeaderPage = () => {
         </div>
 
       </section>
-      <nav className=''>
+      <nav className='z-10'>
         <ul className='flex gap-8 h-12 px-16 bg-gray-700 justify-end items-center'>
           {
             navbar?.map((nav: any) => (

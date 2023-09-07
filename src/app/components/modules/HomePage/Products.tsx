@@ -11,6 +11,7 @@ import axios from 'axios';
 import Loading from './Loading';
 import { useDispatch } from 'react-redux';
 import { add } from '@/app/store/cartSlice';
+import showNotify from '@/app/utils/notify';
 
 
 
@@ -36,6 +37,7 @@ const Products = () => {
                 quantity: 1
             }
         ));
+        showNotify("success","Successfully added to cart");
     }
 
 
