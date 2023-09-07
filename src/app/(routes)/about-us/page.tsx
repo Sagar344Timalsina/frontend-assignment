@@ -2,11 +2,11 @@ import React from 'react'
 
 const AboutUs = () => {
   return (
-    <main className='contact-main dynamic-x-padding dynamic-y-padding check'>
-      <section className='heading-about flex justify-center items-center check'>
+    <main className='contact-main dynamic-x-padding dynamic-y-padding '>
+      <section className='heading-about flex justify-center items-center '>
         <h1 className='h1-text text-2xl font-semibold '>About us</h1>
       </section>
-      <section className="child-about grid grid-cols-12 py-8 check min-h-[28rem]">
+      <section className="child-about grid grid-cols-12 py-8  min-h-[28rem]">
         <article className="left-about grid-items col-span-4 flex items-center flex-col gap-4 ">
           <h4 className='text-xl font-poppins'>What we do?</h4>
           <p className='w-72 font-poppins text-justify'>

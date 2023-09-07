@@ -3,7 +3,7 @@ import React from 'react'
 
 const Contactpage = () => {
   return (
-    <main className="main-contact dynamic-x-padding  dynamic-y-padding check">
+    <main className="main-contact dynamic-x-padding  dynamic-y-padding ">
       <div className="heading-contact flex items-center justify-center">
         <h1 className='text-2xl font-semibold'>Contact Us</h1>
       </div>
